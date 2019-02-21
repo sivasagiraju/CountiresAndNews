@@ -1,0 +1,46 @@
+<style>
+  .fl {
+    float: left;
+    padding-right: 20px;
+  }
+
+  #tblCountries tr {
+    border-bottom: 1px solid #d8d8d8;
+  }
+
+</style>
+<div style="clear:both;margin-top: 10px;">
+  <table id="tblCountries" class="CountryTable">
+    <thead>
+      <tr>
+          <th>Headline</th>
+          <th>Language</th>
+          <th>country</th>
+          <th>Site URL</th>
+      </tr>      
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let NewsSource of NewsSources.sources | paginate: { itemsPerPage: 15, currentPage: p }">
+        <td style="width:70%">
+          <div>
+            <a [routerLink]="['/News-Listing', NewsSource.id]">
+              {{NewsSource.name}}
+            </a>
+          </div>
+          <div >{{NewsSource.description}}</div>
+        </td>
+        <td style="width:8%">
+          <div class="fl">{{NewsSource.language}}</div>
+        </td>
+        <td style="width:7%">
+            <div class="fl">{{NewsSource.country}}</div>
+        </td>
+        <td style="width:10%">
+            <div class="fl"><a target="blank" href="{{NewsSource.url}}">{{NewsSource.name}}</a></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

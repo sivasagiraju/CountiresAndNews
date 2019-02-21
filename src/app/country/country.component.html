@@ -1,0 +1,107 @@
+<style>
+  .breadcrumb {
+    padding: 8px 15px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    width: 100%;
+    
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+ul, ol {
+    margin-top: 0;
+    /* margin-bottom: 10px; */
+}
+.breadcrumb>li {
+    display: inline-block;
+}
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+</style>
+<br>
+<div class="row ng-scope">
+  <ol class="breadcrumb">
+    <li><a href="/#/">Search</a></li> / 
+    <li class="active ng-binding">{{CountryDetails[0].name}}</li>
+  </ol>
+
+  <!-- <p ng-show="state === 'loading'" class="ng-hide"><i>Loading...</i></p> -->
+
+  <div class="col-md-12">
+    <h1 class="ng-binding">{{CountryDetails[0].name}}</h1>
+  </div>
+</div>
+
+<div class="row ng-scope">
+  <div class="col-md-4">
+    <h2>Names</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Common</th>
+            <td class="ng-binding">Afghanistan</td>
+          </tr>
+          <tr>
+            <th>Official</th>
+            <td class="ng-binding"></td>
+          </tr>
+          <tr>
+            <th>Common (Native)</th>
+            <td class="ng-binding">{{CountryDetails[0].nativeName}}</td>
+          </tr>
+          <tr>
+            <th>Official (Native)</th>
+            <td class="ng-binding">{{CountryDetails[0].nativeName}}</td>
+          </tr>         
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Codes</h2>
+    <div class="table-reponsive">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>ISO 3166-1 alpha-2</th>
+            <td class="ng-binding">{{CountryDetails[0].alpha2Code}}</td>
+          </tr>
+          <tr>
+            <th>ISO 3166-1 alpha-3</th>
+            <td class="ng-binding">{{CountryDetails[0].alpha3Code}}</td>
+          </tr>
+          <tr>
+            <th>ISO 3166-1 numeric</th>
+            <td class="ng-binding">{{CountryDetails[0].numericCode}}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Language</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        
+      </table>
+    </div>
+
+
+  </div>
+
+  <!-- ngIf: country.cca3 -->
+
+</div>

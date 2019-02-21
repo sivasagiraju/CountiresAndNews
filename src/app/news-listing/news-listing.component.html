@@ -1,0 +1,58 @@
+<style>
+  #tblNewsHeadlines tr {
+    border-bottom: 1px solid #d8d8d8;
+    margin-bottom: 10px;
+  }
+
+  .imageDivProp {
+    width: 150px;
+    float: left;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+
+  .vcenter {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}
+
+</style>
+<script src="components/moment/moment.js"></script>
+<script src="components/angular-moment/angular-moment.js"></script>
+<div style="clear:both;">
+  <table id="tblNewsHeadlines">
+    <thead>
+
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let NewsHeadline of NewsHeadlines.articles | paginate: { itemsPerPage: 15, currentPage: p }">
+        <td>
+          <div>
+            <div class="row">
+              <div class="imageDivProp col-md-2">
+                <img width="130px" height="78px" src="{{NewsHeadline.urlToImage}}">
+              </div>
+              <div class="col-md-10">
+                <div><a href="{{NewsHeadline.url}}" target="_blank">{{NewsHeadline.title}}</a></div>
+                <div>{{NewsHeadline.description}}</div>
+                <div class="row ">&nbsp;</div>
+                <div class="row ">
+                  <div class="col-md-4 vcenter">
+                    <div>Published at: {{NewsHeadline.publishedAt | amDateFormat:'LL'}}</div>
+                  </div>
+                  <div class="col-md-4 vcenter">&nbsp;</div>
+                  <div class="col-md-4 vcenter">
+                    <div style="float:right;">Source: {{NewsHeadline.source.name}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

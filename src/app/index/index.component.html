@@ -1,0 +1,71 @@
+<title>Kendo UI for Angular Example Application</title>
+<style>
+  .buttonMarginLeft {
+    margin-left: 5px;
+  }
+
+</style>
+<p>
+  Countries Listing
+</p>
+
+<input #countriesSearch kendoTextBox>
+<!-- data-bind="txtSearchCountries" -->
+<button class="buttonMarginLeft" (click)="SearchCountries(countriesSearch.value)" kendoButton [look]="'outline'"
+  [primary]="true">Search</button>
+
+<div style="margin-top:10px;margin-bottom: 10px;">
+  Regions :
+
+  <!--<ul *ngFor="let country of Countries | unique:'region'">  
+     <li *ngIf="country.region != ''">
+      <button (click)="GetCountriesByRegion(country.region)">{{ country.region }}</button>
+    </li>  
+  </ul> -->
+  <kendo-buttongroup [selection]="'single'">
+    <button kendoButton (click)="GetCountriesByRegion('All')" [toggleable]="true">All</button>
+    <button kendoButton (click)="GetCountriesByRegion('Africa')" [toggleable]="true">Africa</button>
+    <button kendoButton (click)="GetCountriesByRegion('Americas')" [toggleable]="true">Americas</button>
+    <button kendoButton (click)="GetCountriesByRegion('Asia')" [toggleable]="true">Asia</button>
+    <button kendoButton (click)="GetCountriesByRegion('Europe')" [toggleable]="true">Europe</button>
+    <button kendoButton (click)="GetCountriesByRegion('Oceania')" [toggleable]="true">Oceania</button>
+    <button kendoButton (click)="GetCountriesByRegion('Polar')" [toggleable]="true">Polar</button>
+  </kendo-buttongroup>
+</div>
+
+<kendo-grid [kendoGridBinding]="Countries" [pageSize]="25" [pageable]="true" [sortable]="false" [filterable]="false"
+  [groupable]="false" [height]="auto">
+
+  <kendo-grid-column field="name" title="Name" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <a title="{{dataItem.name}}" href="/Country/{{dataItem.name}}">{{dataItem.name}}</a>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="capital" title="Capital" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="nativeName" title="Native Name" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="region" title="Region" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="subregion" title="sub-Region" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="population" title="Population" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="callingCodes" title="Calling Codes" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div>{{dataItem.callingCodes.join(",") | slice:0:10 }}</div>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="timezones" title="Time Zones" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div>{{(dataItem.timezones.join(",").length >15) ? (dataItem.timezones.join(",") | slice:0:20) +".." :
+        dataItem.timezones.join(",")}}</div>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="latlng" title="Lat  Lng" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <div>{{dataItem.latlng.join(",") | slice:0:20 }}</div>
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="flag" title="Flag" [width]="100">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <img src='{{dataItem.flag}}' height="20px" width="25px">
+    </ng-template>
+  </kendo-grid-column>
+
+</kendo-grid>
